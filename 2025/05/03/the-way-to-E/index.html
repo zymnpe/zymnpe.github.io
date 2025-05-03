@@ -20,20 +20,26 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="准备的过程知识框架对于电赛而言，最基本的要求就是单片机的使用，这在 b 站上有一万个教程，本文就不再叙述这方面的内容。作者从一个小白的视角入门，一步步的去分享作者准备电源方面的过程。 首先，电源最基础的电路结构就是 DCDC ACDC DCAC，说简单点就是直流和交流变来变去，这里先说最基础的 DCDC，就是我更喜欢叫双向直流电压变换，因为比较一步到位。 DCDC试想下，输入、输出、直流电，这三者">
+  <meta name="description" content="准备的过程知识框架对于电赛而言，最基本的要求就是单片机的使用，这在 b 站上有一万个教程，本文就不再叙述这方面的内容。作者从一个小白的视角入门，一步步的去分享作者准备电源方面的过程。 这里作者大概按模块去分享，首先就是交直流变换，也是最基础的，其次就是驱动模块、采样模块，这三块算是完成基础指标所必需的。 首先，电源最基础的电路结构就是 DCDC ACDC DCAC，说简单点就是直流和交流变来变去，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="the way to E">
 <meta property="og:url" content="http://example.com/2025/05/03/the-way-to-E/index.html">
 <meta property="og:site_name" content="ZZZZ">
-<meta property="og:description" content="准备的过程知识框架对于电赛而言，最基本的要求就是单片机的使用，这在 b 站上有一万个教程，本文就不再叙述这方面的内容。作者从一个小白的视角入门，一步步的去分享作者准备电源方面的过程。 首先，电源最基础的电路结构就是 DCDC ACDC DCAC，说简单点就是直流和交流变来变去，这里先说最基础的 DCDC，就是我更喜欢叫双向直流电压变换，因为比较一步到位。 DCDC试想下，输入、输出、直流电，这三者">
+<meta property="og:description" content="准备的过程知识框架对于电赛而言，最基本的要求就是单片机的使用，这在 b 站上有一万个教程，本文就不再叙述这方面的内容。作者从一个小白的视角入门，一步步的去分享作者准备电源方面的过程。 这里作者大概按模块去分享，首先就是交直流变换，也是最基础的，其次就是驱动模块、采样模块，这三块算是完成基础指标所必需的。 首先，电源最基础的电路结构就是 DCDC ACDC DCAC，说简单点就是直流和交流变来变去，">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="c:\Users\Administrator\Pictures\Screenshots\2025-05-03buck.png">
+<meta property="og:image" content="http://example.com/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03buck.png">
+<meta property="og:image" content="http://example.com/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03boost.png">
+<meta property="og:image" content="http://example.com/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03DCDC.png">
+<meta property="og:image" content="http://example.com/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03DCAC.png">
+<meta property="og:image" content="http://example.com/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03DCAC2.png">
+<meta property="og:image" content="http://example.com/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03%E9%80%86%E5%8F%98.png">
+<meta property="og:image" content="http://example.com/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03%E9%80%86%E5%8F%982.png">
 <meta property="article:published_time" content="2025-05-03T06:44:10.000Z">
-<meta property="article:modified_time" content="2025-05-03T07:30:45.091Z">
+<meta property="article:modified_time" content="2025-05-03T08:48:46.880Z">
 <meta property="article:author" content="ZyMnpE">
 <meta property="article:tag" content="经验">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:\Users\Administrator\Pictures\Screenshots\2025-05-03buck.png">
+<meta name="twitter:image" content="http://example.com/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03buck.png">
 
 <link rel="canonical" href="http://example.com/2025/05/03/the-way-to-E/">
 
@@ -212,7 +218,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2025-05-03 14:44:10 / 修改時間：15:30:45" itemprop="dateCreated datePublished" datetime="2025-05-03T14:44:10+08:00">2025-05-03</time>
+              <time title="創建時間：2025-05-03 14:44:10 / 修改時間：16:48:46" itemprop="dateCreated datePublished" datetime="2025-05-03T14:44:10+08:00">2025-05-03</time>
             </span>
 
           
@@ -227,10 +233,18 @@
 
       
         <h1 id="准备的过程"><a href="#准备的过程" class="headerlink" title="准备的过程"></a>准备的过程</h1><h2 id="知识框架"><a href="#知识框架" class="headerlink" title="知识框架"></a>知识框架</h2><p>对于电赛而言，最基本的要求就是单片机的使用，这在 b 站上有一万个教程，本文就不再叙述这方面的内容。作者从一个小白的视角入门，一步步的去分享作者准备电源方面的过程。</p>
+<p>这里作者大概按模块去分享，首先就是<strong>交直流变换</strong>，也是最基础的，其次就是<strong>驱动模块</strong>、<strong>采样模块</strong>，这三块算是完成基础指标所必需的。</p>
 <p>首先，电源最基础的电路结构就是 DCDC ACDC DCAC，说简单点就是直流和交流变来变去，这里先说最基础的 DCDC，就是我更喜欢叫双向直流电压变换，因为比较一步到位。</p>
-<h3 id="DCDC"><a href="#DCDC" class="headerlink" title="DCDC"></a>DCDC</h3><p>试想下，输入、输出、直流电，这三者组合在一起不难想象出 DCDC 就是完成输入输出升压或降压的一个电路，最常用的就是 buck（降压）和 boost（升压）这两个电路，其实还有 LDO，不过相对上面两个来说不太常用，此处按下不表。</p>
+<h3 id="DCDC"><a href="#DCDC" class="headerlink" title="DCDC"></a>DCDC</h3><p>试想下，输入、输出、直流电，这三者组合在一起不难想象出 DCDC 就是完成输入输出升压或降压的一个电路，最常用的就是 buck（降压）和 boost（升压）这两个电路，其实还有 LDO，不过相对上面两个来说不太常用，此处按下不表。<br>DCDC 也是最常见的题型。</p>
 <p>buck 电路图如下:</p>
-<p><img src="C:\Users\Administrator\Pictures\Screenshots\2025-05-03buck.png"buck"" alt="BUCK"></p>
+<p><img src="/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03buck.png" alt="BUCK"><br>这是一个简单的拓扑图，电感电容电阻都没有给出具体的值，只要选的合理就能不会影响最终效果。直接甩出结论：现在假定占空比是 0.6，那么 Vo&#x3D;0.6Vi。</p>
+<p>boost 电路同理，下面是它的电路图：</p>
+<p><img src="/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03boost.png" alt="BOOST"><br>现在假定占空比是 0.6，那么 Vi&#x3D;0.6Vo。</p>
+<p>具体为什么在 CSDN 上有个巨给力的<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42005993/article/details/120144144">手撕 buck、boost 电路的文章</a>,算是从公式的角度去推导了一遍，作者没什么实力也去手撕，跟着看完之后最大的感悟就是电感储能的性质导致了升压与降压，如果两个分开看不容易理解这句话，下面是双向 DCDC 的拓扑：</p>
+<p><img src="/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03DCDC.png" alt="DCDC"><br>虽然看起来比较乱，但这个拓扑算是把 buckboost 整合到一起，左到右是 BUCK,右到左是 BOOST，升压的过程是利用电感储能的性质，先对电感充电，再利用电感和电压源一起放电，而降压就是先对电感充电，然后电感单独放电。</p>
+<p>以上就是最基础的 DCDC 电路，算是 the way to E 的敲门砖，包括后续的驱动电路也是以这个为模板的。</p>
+<h3 id="DCAC"><a href="#DCAC" class="headerlink" title="DCAC"></a>DCAC</h3><p>直流电怎么变成交流电呢？首先我们要明确 AC，指的只要是有正负变换的就算交流电，所以在完成指定波形之前，最重要的就是要完成正负电压的变换。<br>先看最简单的 DCAC 拓扑<br><img src="/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03DCAC.png" alt="DCAC"><br>下面是其波形图<br><img src="/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03DCAC2.png" alt="DCAC2"><br>不难看出，我们想要使输出的电压有正有负，只需要保证在 R 上的电流有从左向右的，也有从右向左的，一个 H 桥就能做到。当然这只是最最最最简单的，好比 1+1&#x3D;2 的难度，当后续的题目要求输出正弦波，输出三相正弦等等等等，我们就需要抠一些细节了，比如输出正弦波。</p>
+<p>可以看下面这个拓扑及其输出的波形<br><img src="/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03%E9%80%86%E5%8F%98.png" alt="逆变"><br><img src="/.%5C%E7%94%B5%E8%B5%9B%5C%E4%BA%A4%E7%9B%B4%E6%B5%81%E6%8B%93%E6%89%91%5C2025-05-03%E9%80%86%E5%8F%982.png" alt="逆变2"></p>
 
     </div>
 
@@ -311,7 +325,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">准备的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E6%A1%86%E6%9E%B6"><span class="nav-number">1.1.</span> <span class="nav-text">知识框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DCDC"><span class="nav-number">1.1.1.</span> <span class="nav-text">DCDC</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">准备的过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86%E6%A1%86%E6%9E%B6"><span class="nav-number">1.1.</span> <span class="nav-text">知识框架</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DCDC"><span class="nav-number">1.1.1.</span> <span class="nav-text">DCDC</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DCAC"><span class="nav-number">1.1.2.</span> <span class="nav-text">DCAC</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
